@@ -1,0 +1,91 @@
+Dump of assembler code for function ex1:
+   0x0000000000000000 <+0>:     endbr64 
+   0x0000000000000004 <+4>:     lea    (%rdi,%rsi,1),%rax
+   0x0000000000000008 <+8>:     lea    (%rax,%rdx,4),%rcx
+   0x000000000000000c <+12>:    imul   %rdi,%rdi
+   0x0000000000000010 <+16>:    lea    (%rdi,%rsi,2),%rax
+   0x0000000000000014 <+20>:    add    %rax,%rdx
+   0x0000000000000017 <+23>:    cmp    %rdx,%rcx
+   0x000000000000001a <+26>:    setge  %al
+   0x000000000000001d <+29>:    movzbl %al,%eax
+   0x0000000000000020 <+32>:    retq 
+
+%rdi => long a
+%rsi => long b
+%eax => int retval
+%rax => long retval
+%rcx => long c
+
+int ex1(long a, long b, long rdx) {
+  long retval = a + b;
+  long c = retval + 4*rdx;
+  a *= a;
+  retval = a + (2 * b);
+  rdx += retval;
+  retval = ((c - rdx) >= 0);
+  return retval;
+}
+
+
+Dump of assembler code for function ex2:
+   0x0000000000001132 <+0>:     endbr64 
+   0x0000000000001136 <+4>:     push   %rbx
+   0x0000000000001137 <+5>:     mov    %rdi,%rbx
+   0x000000000000113a <+8>:     mov    %rsi,%rdi
+   0x000000000000113d <+11>:    callq  0x1129 <vezes2>
+   0x0000000000001142 <+16>:    cmp    %rbx,%rax
+   0x0000000000001145 <+19>:    jle    0x114a <ex2+24>
+   0x0000000000001147 <+21>:    add    %rbx,%rbx
+   0x000000000000114a <+24>:    add    %rbx,%rax
+   0x000000000000114d <+27>:    pop    %rbx
+   0x000000000000114e <+28>:    retq   
+End of assembler dump.
+
+%rdi => long a
+%rsi => long b
+%rax => long c1
+%rbx => long c2
+
+long solucao_ex2(long a, long b) {
+  long c2 = a;
+  a = b;
+  long c1 = vezes2(a);
+  if ((c1 - c2) <= 0) {
+    c1 += c2;
+    return c1;
+  }
+  c2 += c2;
+  c1 += c2;
+  return c1;
+}
+
+
+
+Dump of assembler code for function ex3:
+   0x0000000000000000 <+0>: endbr64 
+   0x0000000000000004 <+4>: cmp    %rsi,%rdi
+   0x0000000000000007 <+7>: setl   %al
+   0x000000000000000a <+10>:    movzbl %al,%eax
+   0x000000000000000d <+13>:    mov    %eax,(%rdx)
+   0x000000000000000f <+15>:    sete   %al
+   0x0000000000000012 <+18>:    movzbl %al,%eax
+   0x0000000000000015 <+21>:    mov    %eax,(%rcx)
+   0x0000000000000017 <+23>:    setg   %al
+   0x000000000000001a <+26>:    movzbl %al,%eax
+   0x000000000000001d <+29>:    mov    %eax,(%r8)
+   0x0000000000000020 <+32>:    retq
+
+%rdi => long a
+%rsi => long b
+%rdx => long *c
+%rcx => long *d
+%r8  => long *e
+
+void solucao_ex3(long a, long b, int *c, int *d, int *e) {
+    char retval = (a < b);
+    *c = retval;
+    retval = (a == b);
+    *d = retval;
+    retval = (a > b);
+    *e = retval;
+}

@@ -1,0 +1,89 @@
+Dump of assembler code for function soma_n:
+   0x0000000000000000 <+0>:     endbr64 
+   0x0000000000000004 <+4>:     mov    $0x0,%eax
+   0x0000000000000009 <+9>:     mov    $0x0,%edx
+   0x000000000000000e <+14>:    cmp    %edi,%eax
+   0x0000000000000010 <+16>:    jge    0x1d <soma_n+29>
+   0x0000000000000012 <+18>:    movslq %eax,%rcx
+   0x0000000000000015 <+21>:    add    %rcx,%rdx
+   0x0000000000000018 <+24>:    add    $0x1,%eax
+   0x000000000000001b <+27>:    jmp    0xe <soma_n+14>
+   0x000000000000001d <+29>:    mov    %rdx,%rax
+   0x0000000000000020 <+32>:    retq   
+End of assembler dump.
+
+%edx => int b
+%eax => int ret
+%rcx => long c
+%edi => int a
+
+
+long soma_n_solucao(int a) {
+  long ret = 0; b = 0;
+  long c;
+  while (ret < a) {
+    c = ret;
+    b += c;
+    ret += 1;
+  }
+  ret = b;
+  return ret;
+}
+
+
+
+
+
+Dump of assembler code for function ex3:
+   0x0000000000000000 <+0>:     endbr64 
+   0x0000000000000004 <+4>:     mov    $0x0,%ecx
+   0x0000000000000009 <+9>:     mov    $0x0,%r8d
+   0x000000000000000f <+15>:    jmp    0x15 <ex3+21>
+   0x0000000000000011 <+17>:    add    $0x1,%rcx     (faz_algo2)
+   0x0000000000000015 <+21>:    cmp    %rdi,%rcx     (verifica)
+   0x0000000000000018 <+24>:    jge    0x2c <ex3+44>
+   0x000000000000001a <+26>:    mov    %rcx,%rax
+   0x000000000000001d <+29>:    cqto   
+   0x000000000000001f <+31>:    idiv   %rsi
+   0x0000000000000022 <+34>:    test   %rdx,%rdx
+   0x0000000000000025 <+37>:    jne    0x11 <ex3+17>
+   0x0000000000000027 <+39>:    add    %rcx,%r8
+   0x000000000000002a <+42>:    jmp    0x11 <ex3+17>
+   0x000000000000002c <+44>:    mov    %r8,%rax      (faz_algo1)
+   0x000000000000002f <+47>:    retq   
+End of assembler dump.
+
+%rdi => long a
+%rsi => long b
+%rdx => long c
+%rcx => long d
+%r8  => long e
+
+ex3_solucao() {
+  d = 0;
+  e = 0;
+  long ret;
+  goto compara1;
+
+faz_algo:
+  ret = d;
+  ret = ret / b;
+  if ((c & c) != 0) goto faz_algo2;
+  goto faz_algo3;
+
+faz_algo2:
+  d += 1;
+  goto compara1;
+
+faz_algo3:
+  e += d;
+  goto faz_algo2;
+
+compara1:
+  if (d >= a) goto finaliza;
+  goto faz_algo;
+
+finaliza:
+  ret = e;
+  return ret;
+}

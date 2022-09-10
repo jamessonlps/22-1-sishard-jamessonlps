@@ -1,0 +1,10 @@
+Dump of assembler code for function level1:
+   0x0000000000001209 <+0>:     endbr64 
+   0x000000000000120d <+4>:     cmp    %edi,0x2dfd(%rip)        # 0x4010 <inteiro_global>
+   0x0000000000001213 <+10>:    sete   %al
+   0x0000000000001216 <+13>:    movzbl %al,%eax
+   0x0000000000001219 <+16>:    retq   
+End of assembler dump.
+
+
+int level1() {}
